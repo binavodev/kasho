@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { Check } from "iconoir-react";
 import { useRef } from "react";
 
+import { useWaitlist } from "@/contexts/waitlist-context";
 import { useKashoInView } from "@/hooks/use-kasho-in-view";
 import { KASHO_EASE } from "@/lib/motion";
 
 export function FinalCTA(): React.ReactElement {
+  const { openWaitlist } = useWaitlist();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useKashoInView(ref);
 
@@ -54,12 +56,13 @@ export function FinalCTA(): React.ReactElement {
             Si no ves resultados en el primer mes, te devolvemos el dinero.
           </p>
           <div className="mt-11 flex flex-col items-center gap-4">
-            <a
+            <button
               className="inline-flex items-center gap-2.5 rounded-[14px] bg-kasho-black px-10 py-4 font-sans text-[17px] font-semibold text-white transition-all duration-300 hover:scale-[1.03] hover:bg-kasho-navy hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)]"
-              href="#precios"
+              onClick={openWaitlist}
+              type="button"
             >
-              Empezar ahora <span aria-hidden>→</span>
-            </a>
+              Unirme a la lista de espera <span aria-hidden>→</span>
+            </button>
             <a
               className="font-sans text-sm text-black/50 transition-colors duration-200 hover:text-kasho-black"
               href="https://wa.me/573000000000"

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
+import { useWaitlist } from "@/contexts/waitlist-context";
 import { KASHO_EASE } from "@/lib/motion";
 
 gsap.registerPlugin(useGSAP);
@@ -137,10 +138,11 @@ const fadeUp = {
 };
 
 export function Hero(): React.ReactElement {
+  const { openWaitlist } = useWaitlist();
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-svh items-center overflow-hidden bg-kasho-black pb-16 pt-0">
+    <section className="relative -mt-16 flex min-h-svh items-center overflow-hidden bg-kasho-black pb-16 pt-16">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -185,7 +187,7 @@ export function Hero(): React.ReactElement {
           </motion.div>
 
           <motion.h1
-            className="mb-6 font-heading text-[clamp(42px,5.5vw,80px)] font-extrabold leading-[1.05] tracking-tight text-white"
+            className="mb-5 font-heading text-[clamp(30px,3.8vw,48px)] font-extrabold leading-[1.08] tracking-tight text-white md:mb-6"
             custom={reduceMotion ? 0 : 0.15}
             initial="hidden"
             variants={fadeUp}
@@ -220,12 +222,13 @@ export function Hero(): React.ReactElement {
             viewport={{ once: true }}
             whileInView="visible"
           >
-            <a
+            <button
               className="inline-flex items-center gap-2 rounded-xl bg-kasho-green px-7 py-3.5 font-sans text-[15px] font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-kasho-green-dark hover:shadow-[0_8px_30px_rgba(0,196,140,0.35)] active:scale-[0.98]"
-              href="#precios"
+              onClick={openWaitlist}
+              type="button"
             >
-              Quiero empezar <span aria-hidden>→</span>
-            </a>
+              Unirme a la lista de espera <span aria-hidden>→</span>
+            </button>
             <a
               className="inline-flex items-center rounded-xl border border-white/15 px-7 py-3.5 font-sans text-[15px] font-medium text-white/75 transition-all duration-300 hover:border-kasho-green/50 hover:text-kasho-green"
               href="#como-funciona"

@@ -60,7 +60,6 @@ src/
     legal/              # Páginas legales
     ui/                 # Breadcrumb, Button, etc.
   lib/                  # fonts, motion, utils
-  proxy.ts              # Redirects + headers (Next.js 16 “proxy”)
 public/
   llms.txt              # AISO / LLMs
 ```
@@ -86,7 +85,7 @@ public/
 - **JSON-LD** en layout: Organization, WebSite, SoftwareApplication (ofertas), FAQPage.
 - **Sitemap** y **robots** dinámicos (`app/sitemap.ts`, `app/robots.ts`).
 - **`public/llms.txt`** con información estructurada para LLMs.
-- **`src/proxy.ts`:** redirección www → apex, slash final, cabeceras `X-Robots-Tag` en rutas privadas documentadas.
+- Redirecciones **www/apex y HTTPS** las define el hosting (p. ej. **Vercel** dominios / **Cloudflare**), no el repo.
 
 ## Despliegue
 

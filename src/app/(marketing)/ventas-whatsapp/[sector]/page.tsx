@@ -122,53 +122,86 @@ export default async function SectorPage({ params }: Props): Promise<React.React
   if (!data) notFound();
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main className="relative min-h-screen bg-kasho-black text-white overflow-hidden">
+      {/* Hero gradient */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[380px] w-[700px] -translate-x-1/2 rounded-full opacity-[0.06]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, #00c48c 0%, transparent 70%)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20">
         <Breadcrumb
           items={[
-            { label: "Ventas WhatsApp", href: "/" },
+            { label: "Ventas WhatsApp", href: "/ventas-whatsapp/salud-estetica" },
             { label: data.nombre, href: `/ventas-whatsapp/${sector}` },
           ]}
         />
 
-        <div className="mt-8">
-          <p className="text-indigo-400 text-sm font-semibold tracking-widest uppercase mb-3">
+        {/* Header */}
+        <div className="mt-10 mb-14">
+          <p className="text-kasho-green text-sm font-semibold tracking-widest uppercase mb-3 font-sans">
             Solución para {data.nombre}
           </p>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
-            Ventas WhatsApp con IA<br />para {data.nombre} en Colombia
+          <h1 className="font-heading text-[clamp(32px,5vw,56px)] font-extrabold leading-tight tracking-tight mb-6">
+            Ventas WhatsApp con IA
+            <br />
+            para {data.nombre} en Colombia
           </h1>
-          <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mb-10">
+          <p className="text-white/50 text-lg leading-relaxed max-w-2xl font-sans">
             {data.descripcion}
           </p>
+        </div>
 
-          {/* Métricas */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-            {data.metricas.map((m) => (
-              <div
-                key={m.label}
-                className="bg-white/5 rounded-2xl border border-white/10 p-6"
-              >
-                <div className="text-3xl font-bold text-white mb-1">{m.valor}</div>
-                <div className="text-sm text-gray-400">{m.label}</div>
+        {/* Métricas */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-14">
+          {data.metricas.map((m) => (
+            <div
+              key={m.label}
+              className="bg-white/[0.04] rounded-[20px] border border-white/[0.08] p-6 hover:border-kasho-green/20 transition-colors"
+            >
+              <div className="font-heading text-3xl font-extrabold text-kasho-green mb-1.5">
+                {m.valor}
               </div>
-            ))}
-          </div>
+              <div className="text-sm text-white/50 font-sans">{m.label}</div>
+            </div>
+          ))}
+        </div>
 
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="https://app.kashoai.com/registro"
-              className="inline-block bg-indigo-600 hover:bg-indigo-500 transition-colors text-white font-bold px-8 py-4 rounded-xl text-base text-center"
-            >
-              {data.cta}
-            </a>
-            <Link
-              href="/precios"
-              className="inline-block border border-white/20 hover:border-white/40 transition-colors text-gray-300 font-semibold px-8 py-4 rounded-xl text-base text-center"
-            >
-              Ver planes y precios
-            </Link>
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-20">
+          <a
+            href="https://app.kashoai.com/registro"
+            className="inline-block bg-kasho-green hover:bg-kasho-green-dark transition-all duration-300 text-white font-semibold font-sans px-8 py-4 rounded-xl text-[15px] text-center hover:shadow-[0_8px_24px_rgba(0,196,140,0.35)]"
+          >
+            {data.cta}
+          </a>
+          <Link
+            href="/precios"
+            className="inline-block border border-white/[0.15] hover:border-white/30 transition-colors text-white/70 hover:text-white font-semibold font-sans px-8 py-4 rounded-xl text-[15px] text-center"
+          >
+            Ver planes y precios
+          </Link>
+        </div>
+
+        {/* Otros sectores */}
+        <div className="border-t border-white/[0.06] pt-12">
+          <p className="text-white/30 text-sm mb-5 font-sans">Otros sectores</p>
+          <div className="flex flex-wrap gap-3">
+            {Object.values(SECTORES)
+              .filter((s) => s.slug !== sector)
+              .map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/ventas-whatsapp/${s.slug}`}
+                  className="text-sm text-kasho-green/70 hover:text-kasho-green transition-colors font-sans underline underline-offset-2"
+                >
+                  {s.nombre}
+                </Link>
+              ))}
           </div>
         </div>
       </div>

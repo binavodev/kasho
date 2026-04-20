@@ -119,65 +119,96 @@ export default async function CompetidorPage({ params }: Props): Promise<React.R
   if (!data) notFound();
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main className="relative min-h-screen bg-kasho-black text-white overflow-hidden">
+      {/* Hero gradient */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[380px] w-[700px] -translate-x-1/2 rounded-full opacity-[0.06]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, #00c48c 0%, transparent 70%)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20">
         <Breadcrumb
           items={[
-            { label: "Comparaciones", href: "/" },
+            { label: "Comparaciones", href: "/vs/kommo" },
             { label: `Kasho vs ${data.nombre}`, href: `/vs/${competidor}` },
           ]}
         />
 
-        <div className="mt-8">
-          <p className="text-indigo-400 text-sm font-semibold tracking-widest uppercase mb-3">
-            Comparación
+        {/* Header */}
+        <div className="mt-10 mb-14">
+          <p className="text-kasho-green text-sm font-semibold tracking-widest uppercase mb-3 font-sans">
+            Comparación directa
           </p>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
+          <h1 className="font-heading text-[clamp(32px,5vw,56px)] font-extrabold leading-tight tracking-tight mb-6">
             Kasho vs {data.nombre}
           </h1>
-          <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mb-10">
+          <p className="text-white/50 text-lg leading-relaxed max-w-2xl font-sans">
             {data.descripcion}
           </p>
+        </div>
 
-          {/* Tabla de comparación */}
-          <div className="overflow-x-auto rounded-2xl border border-white/10 mb-12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left p-4 text-gray-400 font-medium">Característica</th>
-                  <th className="text-left p-4 text-indigo-400 font-semibold">Kasho</th>
-                  <th className="text-left p-4 text-gray-400 font-medium">{data.nombre}</th>
+        {/* Tabla de comparación */}
+        <div className="overflow-x-auto rounded-[22px] border border-white/[0.08] mb-14 bg-white/[0.02]">
+          <table className="w-full text-sm font-sans">
+            <thead>
+              <tr className="border-b border-white/[0.08]">
+                <th className="text-left p-5 text-white/40 font-medium">Característica</th>
+                <th className="text-left p-5 text-kasho-green font-semibold">Kasho</th>
+                <th className="text-left p-5 text-white/40 font-medium">{data.nombre}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.tabla.map((fila, i) => (
+                <tr
+                  key={fila.feature}
+                  className={`border-b border-white/[0.05] transition-colors hover:bg-white/[0.03] ${
+                    i % 2 === 0 ? "" : "bg-white/[0.02]"
+                  }`}
+                >
+                  <td className="p-5 text-white/60">{fila.feature}</td>
+                  <td className="p-5 text-white font-medium">{fila.kasho}</td>
+                  <td className="p-5 text-white/35">{fila.rival}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {data.tabla.map((fila, i) => (
-                  <tr
-                    key={fila.feature}
-                    className={`border-b border-white/5 ${i % 2 === 0 ? "bg-white/[0.02]" : ""}`}
-                  >
-                    <td className="p-4 text-gray-300">{fila.feature}</td>
-                    <td className="p-4 text-white font-medium">{fila.kasho}</td>
-                    <td className="p-4 text-gray-500">{fila.rival}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="https://app.kashoai.com/registro"
-              className="inline-block bg-indigo-600 hover:bg-indigo-500 transition-colors text-white font-bold px-8 py-4 rounded-xl text-base text-center"
-            >
-              Prueba Kasho gratis 14 días
-            </a>
-            <Link
-              href="/precios"
-              className="inline-block border border-white/20 hover:border-white/40 transition-colors text-gray-300 font-semibold px-8 py-4 rounded-xl text-base text-center"
-            >
-              Ver planes
-            </Link>
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-20">
+          <a
+            href="https://app.kashoai.com/registro"
+            className="inline-block bg-kasho-green hover:bg-kasho-green-dark transition-all duration-300 text-white font-semibold font-sans px-8 py-4 rounded-xl text-[15px] text-center hover:shadow-[0_8px_24px_rgba(0,196,140,0.35)]"
+          >
+            Prueba Kasho gratis 14 días
+          </a>
+          <Link
+            href="/precios"
+            className="inline-block border border-white/[0.15] hover:border-white/30 transition-colors text-white/70 hover:text-white font-semibold font-sans px-8 py-4 rounded-xl text-[15px] text-center"
+          >
+            Ver planes y precios
+          </Link>
+        </div>
+
+        {/* Otras comparaciones */}
+        <div className="border-t border-white/[0.06] pt-12">
+          <p className="text-white/30 text-sm mb-5 font-sans">Otras comparaciones</p>
+          <div className="flex flex-wrap gap-3">
+            {Object.values(COMPETIDORES)
+              .filter((c) => c.slug !== competidor)
+              .map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/vs/${c.slug}`}
+                  className="text-sm text-kasho-green/70 hover:text-kasho-green transition-colors font-sans underline underline-offset-2"
+                >
+                  Kasho vs {c.nombre}
+                </Link>
+              ))}
           </div>
         </div>
       </div>

@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+
+import { useWaitlist } from "@/contexts/waitlist-context";
 
 const productLinks: { href: string; label: string }[] = [
   { href: "/#como-funciona", label: "Cómo funciona" },
@@ -33,7 +37,14 @@ const legalLinks: { href: string; label: string }[] = [
   { href: "/privacidad", label: "Política de privacidad" },
 ];
 
+const linkMuted =
+  "mb-3 block font-sans text-sm text-neutral-400 transition-colors duration-200 hover:text-kasho-green";
+const headingMuted =
+  "mb-5 font-heading text-[13px] font-bold uppercase tracking-widest text-neutral-300";
+
 export function Footer(): React.ReactElement {
+  const { openWaitlist } = useWaitlist();
+
   return (
     <footer className="bg-kasho-black px-4 py-16 pb-8 sm:px-6">
       <div className="mx-auto max-w-7xl">
@@ -42,7 +53,7 @@ export function Footer(): React.ReactElement {
             <div className="mb-3 font-heading text-2xl font-extrabold text-kasho-green">
               Kasho
             </div>
-            <p className="mb-5 max-w-sm font-sans text-sm leading-relaxed text-[#555]">
+            <p className="mb-5 max-w-sm font-sans text-sm leading-relaxed text-neutral-400">
               Tu asistente de ventas en WhatsApp. Responde, hace seguimiento y
               te muestra los resultados.
             </p>
@@ -54,87 +65,60 @@ export function Footer(): React.ReactElement {
             </a>
           </div>
           <div>
-            <div className="mb-5 font-heading text-[13px] font-bold uppercase tracking-widest text-[#444]">
-              Producto
-            </div>
+            <div className={headingMuted}>Producto</div>
             {productLinks.map((link) => (
-              <Link
-                className="mb-3 block font-sans text-sm text-[#555] transition-colors duration-200 hover:text-white"
-                href={link.href}
-                key={link.href}
-              >
+              <Link className={linkMuted} href={link.href} key={link.href}>
                 {link.label}
               </Link>
             ))}
-            <a
-              className="mt-1 block font-sans text-sm font-semibold text-kasho-green transition-colors duration-200 hover:text-white"
-              href="https://app.kashoai.com/registro"
-              rel="noopener noreferrer"
-              target="_blank"
+            <button
+              className="mt-1 block w-full text-left font-sans text-sm font-semibold text-kasho-green transition-colors duration-200 hover:text-white"
+              onClick={openWaitlist}
+              type="button"
             >
-              Empezar gratis →
-            </a>
+              Unirse a la lista de espera →
+            </button>
           </div>
           <div>
-            <div className="mb-5 font-heading text-[13px] font-bold uppercase tracking-widest text-[#444]">
-              Ventas WhatsApp
-            </div>
+            <div className={headingMuted}>Ventas WhatsApp</div>
             {sectorLinks.map((link) => (
-              <Link
-                className="mb-3 block font-sans text-sm text-[#555] transition-colors duration-200 hover:text-white"
-                href={link.href}
-                key={link.href}
-              >
+              <Link className={linkMuted} href={link.href} key={link.href}>
                 {link.label}
               </Link>
             ))}
           </div>
           <div>
-            <div className="mb-5 font-heading text-[13px] font-bold uppercase tracking-widest text-[#444]">
-              Colombia
-            </div>
+            <div className={headingMuted}>Colombia</div>
             {cityLinks.map((link) => (
-              <Link
-                className="mb-3 block font-sans text-sm text-[#555] transition-colors duration-200 hover:text-white"
-                href={link.href}
-                key={link.href}
-              >
+              <Link className={linkMuted} href={link.href} key={link.href}>
                 {link.label}
               </Link>
             ))}
           </div>
           <div>
-            <div className="mb-5 font-heading text-[13px] font-bold uppercase tracking-widest text-[#444]">
-              Comparativas
-            </div>
+            <div className={headingMuted}>Comparativas</div>
             {compareLinks.map((link) => (
-              <Link
-                className="mb-3 block font-sans text-sm text-[#555] transition-colors duration-200 hover:text-white"
-                href={link.href}
-                key={link.href}
-              >
+              <Link className={linkMuted} href={link.href} key={link.href}>
                 {link.label}
               </Link>
             ))}
-            <div className="mt-6 mb-5 font-heading text-[13px] font-bold uppercase tracking-widest text-[#444]">
+            <div className="mt-6 mb-5 font-heading text-[13px] font-bold uppercase tracking-widest text-neutral-300">
               Legal
             </div>
             {legalLinks.map((link) => (
-              <Link
-                className="mb-3 block font-sans text-sm text-[#555] transition-colors duration-200 hover:text-white"
-                href={link.href}
-                key={link.href}
-              >
+              <Link className={linkMuted} href={link.href} key={link.href}>
                 {link.label}
               </Link>
             ))}
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.06] pt-7">
-          <span className="font-sans text-[13px] text-[#444]">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.08] pt-7">
+          <span className="font-sans text-[13px] text-neutral-500">
             © 2026 Kasho. Colombia.
           </span>
-          <span className="font-sans text-[13px] text-[#333]">kashoai.com</span>
+          <span className="font-sans text-[13px] text-neutral-400">
+            kashoai.com
+          </span>
         </div>
       </div>
     </footer>

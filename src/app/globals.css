@@ -293,3 +293,8 @@ input[type="range"].kasho-range::-moz-range-thumb {
 .kasho-table tr:last-child td {
   @apply border-b-0;
 }
+
+/* Native <dialog> overlay (waitlist modal) */
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.65);
+}

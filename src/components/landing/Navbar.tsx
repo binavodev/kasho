@@ -1,10 +1,18 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 
+import { useWaitlist } from "@/contexts/waitlist-context";
+
 export function Navbar(): React.ReactElement {
+  const { openWaitlist } = useWaitlist();
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
@@ -13,14 +21,22 @@ export function Navbar(): React.ReactElement {
     setScrolled(value > 40);
   });
 
+  // Arriba: transparente para que se vea el mismo fondo del hero (ruido + gradiente).
+  // Al hacer scroll: barra blanca como antes.
   const backgroundColor = useTransform(
     scrollY,
-    [0, 72],
-    ["rgba(255,255,255,0)", "rgba(255,255,255,0.94)"],
+    [0, 88],
+    ["rgba(255,255,255,0)", "rgba(255,255,255,0.97)"],
   );
 
-  const linkColor = scrolled ? "text-kasho-black" : "text-white/75";
-  const linkHover = scrolled ? "hover:text-kasho-green" : "hover:text-white";
+  const backdropBlur = useTransform(
+    scrollY,
+    [0, 32, 88],
+    ["blur(0px)", "blur(12px)", "blur(18px)"],
+  );
+
+  const linkColor = scrolled ? "text-kasho-black" : "text-white/90";
+  const linkHover = "hover:text-kasho-green";
   const barColor = scrolled ? "bg-kasho-black" : "bg-white";
 
   return (
@@ -28,8 +44,8 @@ export function Navbar(): React.ReactElement {
       className="fixed inset-x-0 top-0 z-[100] border-b border-transparent shadow-none transition-[box-shadow,border-color] duration-300 data-[scrolled=true]:border-kasho-gray-border/70 data-[scrolled=true]:shadow-[0_1px_0_rgba(0,0,0,0.07)]"
       data-scrolled={scrolled}
       style={{
-        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
+        WebkitBackdropFilter: backdropBlur,
+        backdropFilter: backdropBlur,
         backgroundColor,
       }}
     >
@@ -41,7 +57,7 @@ export function Navbar(): React.ReactElement {
           Kasho
         </Link>
 
-        <div className="hidden items-center gap-6 lg:gap-8 md:flex">
+        <div className="hidden items-center gap-6 md:flex lg:gap-8">
           <Link
             className={`font-sans text-[15px] font-normal transition-colors duration-200 ${linkColor} ${linkHover}`}
             href="/#como-funciona"
@@ -60,14 +76,13 @@ export function Navbar(): React.ReactElement {
           >
             Blog
           </Link>
-          <a
+          <button
             className="rounded-[10px] bg-kasho-green px-5 py-2.5 font-sans text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:bg-kasho-green-dark"
-            href="https://app.kashoai.com/registro"
-            rel="noopener noreferrer"
-            target="_blank"
+            onClick={openWaitlist}
+            type="button"
           >
-            Empezar gratis
-          </a>
+            Unirse a la lista de espera
+          </button>
         </div>
 
         <button
@@ -106,15 +121,16 @@ export function Navbar(): React.ReactElement {
           >
             Blog
           </Link>
-          <a
-            className="mt-4 block rounded-[10px] bg-kasho-green py-3 text-center font-sans font-semibold text-white no-underline"
-            href="https://app.kashoai.com/registro"
-            onClick={() => setMenuOpen(false)}
-            rel="noopener noreferrer"
-            target="_blank"
+          <button
+            className="mt-4 w-full rounded-[10px] bg-kasho-green py-3 text-center font-sans font-semibold text-white no-underline"
+            onClick={() => {
+              setMenuOpen(false);
+              openWaitlist();
+            }}
+            type="button"
           >
-            Empezar gratis
-          </a>
+            Unirse a la lista de espera
+          </button>
         </div>
       ) : null}
     </motion.nav>

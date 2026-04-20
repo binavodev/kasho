@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://kashoai.com/og?monto=3.800.000&plan=Pro",
+        url: "https://kashoai.com/og?plan=Pro&monto=3800000",
         width: 1200,
         height: 630,
         alt: "Kasho — Esta semana recuperaste $3.800.000 en leads que ibas a perder.",

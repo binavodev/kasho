@@ -3,10 +3,34 @@ import type { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
+const DEFAULT_MONTO_DISPLAY = "3.800.000";
+
+function montoDisplayFromParam(raw: string | null): string {
+  if (!raw || raw.trim() === "") {
+    return DEFAULT_MONTO_DISPLAY;
+  }
+  const trimmed = raw.trim();
+  if (/^\d{1,3}(\.\d{3})+$/.test(trimmed)) {
+    return trimmed;
+  }
+  const digits = trimmed.replace(/\D/g, "");
+  if (!digits) {
+    return DEFAULT_MONTO_DISPLAY;
+  }
+  const n = Number(digits);
+  if (!Number.isFinite(n)) {
+    return DEFAULT_MONTO_DISPLAY;
+  }
+  return new Intl.NumberFormat("es-CO", { maximumFractionDigits: 0 }).format(n);
+}
+
 export async function GET(request: NextRequest): Promise<ImageResponse> {
-  const { searchParams } = new URL(request.url);
-  const monto = searchParams.get("monto") ?? "3.800.000";
+  const requestUrl = new URL(request.url);
+  const origin = requestUrl.origin;
+  const { searchParams } = requestUrl;
+  const monto = montoDisplayFromParam(searchParams.get("monto"));
   const plan = searchParams.get("plan") ?? "Pro";
+  const logoSrc = `${origin}/icons/kasho-logo-dark-3x.png`;
 
   return new ImageResponse(
     (
@@ -25,17 +49,13 @@ export async function GET(request: NextRequest): Promise<ImageResponse> {
         {/* Header — logo + plan badge */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            {/* Marca Kasho */}
-            <div
-              style={{
-                fontSize: 28,
-                fontWeight: 800,
-                color: "#ffffff",
-                letterSpacing: "-0.5px",
-              }}
-            >
-              Kasho
-            </div>
+            <img
+              alt="Kasho"
+              height={56}
+              src={logoSrc}
+              style={{ height: 56, width: "auto", objectFit: "contain" }}
+              width={220}
+            />
           </div>
           <div
             style={{

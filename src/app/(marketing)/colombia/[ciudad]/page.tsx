@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: `https://kashoai.com/og?plan=Pro&monto=3.800.000`,
+          url: "https://kashoai.com/og?plan=Pro&monto=3800000",
           width: 1200,
           height: 630,
           alt: title,

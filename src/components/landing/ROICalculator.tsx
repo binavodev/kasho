@@ -240,7 +240,7 @@ export function ROICalculator(): React.ReactElement {
             </div>
 
             <a
-              className="inline-flex items-center gap-2 rounded-xl bg-kasho-green px-8 py-3.5 font-sans text-base font-semibold text-white transition-all duration-300 hover:scale-[1.03] hover:bg-kasho-green-dark hover:shadow-[0_8px_30px_rgba(0,196,140,0.4)]"
+              className="inline-flex items-center gap-2 rounded-xl bg-kasho-green px-8 py-3.5 font-sans text-base font-semibold text-kasho-black transition-all duration-300 hover:scale-[1.03] hover:bg-kasho-green-dark hover:shadow-[0_8px_30px_rgba(0,196,140,0.4)]"
               href="#precios"
             >
               Quiero recuperar ese dinero →

@@ -112,7 +112,7 @@ export default async function CiudadPage({ params }: Props): Promise<React.React
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-16 sm:pb-20">
         <Breadcrumb
           items={[
             { label: "Colombia", href: "/colombia/bogota" },
@@ -121,7 +121,7 @@ export default async function CiudadPage({ params }: Props): Promise<React.React
         />
 
         {/* Header */}
-        <div className="mt-10 mb-14">
+        <div className="mt-4 sm:mt-6 mb-8 sm:mb-12">
           <p className="text-kasho-green text-sm font-semibold tracking-widest uppercase mb-3 font-sans">
             {data.nombreCompleto}
           </p>
@@ -169,7 +169,7 @@ export default async function CiudadPage({ params }: Props): Promise<React.React
         <div className="flex flex-col sm:flex-row gap-4 mb-20">
           <a
             href="https://app.kashoai.com/registro"
-            className="inline-block bg-kasho-green hover:bg-kasho-green-dark transition-all duration-300 text-white font-semibold font-sans px-8 py-4 rounded-xl text-[15px] text-center hover:shadow-[0_8px_24px_rgba(0,196,140,0.35)]"
+            className="inline-block bg-kasho-green font-semibold font-sans text-kasho-black transition-all duration-300 hover:bg-kasho-green-dark px-8 py-4 rounded-xl text-[15px] text-center hover:shadow-[0_8px_24px_rgba(0,196,140,0.35)]"
           >
             Empieza gratis en {data.nombre}
           </a>

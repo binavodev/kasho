@@ -28,7 +28,7 @@ export default function NotFound(): React.ReactElement {
         </p>
         <Link
           href="/"
-          className="inline-block bg-kasho-green hover:bg-kasho-green-dark transition-colors text-white font-bold px-8 py-4 rounded-xl text-base"
+          className="inline-block bg-kasho-green font-bold text-kasho-black transition-colors hover:bg-kasho-green-dark px-8 py-4 rounded-xl text-base"
         >
           Volver al inicio
         </Link>

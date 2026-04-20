@@ -1,11 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Check } from "iconoir-react";
-import { useRef, useState } from "react";
-
-import { useKashoInView } from "@/hooks/use-kasho-in-view";
-import { KASHO_EASE } from "@/lib/motion";
+import { useState } from "react";
 
 type Plan = {
   dark: boolean;
@@ -17,7 +13,7 @@ type Plan = {
   badge?: string;
 };
 
-const plans: Plan[] = [
+const PLANES: Plan[] = [
   {
     badge: undefined,
     dark: false,
@@ -70,40 +66,16 @@ function formatPrice(value: number, discount: number): string {
   return `$${Math.round(value * discount).toLocaleString("es-CO")}`;
 }
 
-export function Pricing(): React.ReactElement {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useKashoInView(ref);
+export function PricingSection(): React.ReactElement {
   const [annual, setAnnual] = useState(false);
   const discount = annual ? 0.85 : 1;
 
   return (
-    <section
-      className="bg-kasho-gray-light py-16 md:py-24 lg:py-32"
-      id="precios"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" ref={ref}>
-        <motion.div
-          animate={inView ? "visible" : "hidden"}
-          className="mb-12 text-center md:mb-14"
-          initial="hidden"
-          variants={{
-            hidden: { opacity: 0, y: 24 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.6, ease: KASHO_EASE },
-            },
-          }}
-        >
-          <h2 className="font-heading text-[clamp(32px,4vw,56px)] font-extrabold leading-tight tracking-tight text-kasho-black">
-            Sin contratos. Sin sorpresas.
-            <br />
-            Solo resultados.
-          </h2>
-          <p className="mt-3 font-sans text-[17px] text-[#888]">
-            Cancela cuando quieras. Precios en pesos colombianos.
-          </p>
-          <div className="mt-7 inline-flex items-center gap-3 rounded-full border border-kasho-gray-border bg-white py-1.5 pl-4 pr-1.5">
+    <section className="relative z-10 -mx-5 bg-kasho-gray-light py-14 pb-20 sm:-mx-6 lg:-mx-8">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        {/* Toggle mensual / anual */}
+        <div className="mb-10 flex max-w-full flex-wrap justify-center gap-y-2">
+          <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-x-3 gap-y-2 rounded-full border border-kasho-gray-border bg-white py-1.5 pl-3 pr-1.5 sm:pl-4">
             <span
               className={`font-sans text-sm ${annual ? "text-[#888]" : "font-medium text-kasho-black"}`}
             >
@@ -112,8 +84,10 @@ export function Pricing(): React.ReactElement {
             <button
               aria-checked={annual}
               aria-label="Alternar facturación anual"
-              className={`relative h-6 w-11 rounded-full border-none transition-colors duration-300 ${annual ? "bg-kasho-green" : "bg-kasho-gray-border"}`}
-              onClick={() => setAnnual((value) => !value)}
+              className={`relative h-6 w-11 rounded-full border-none transition-colors duration-300 ${
+                annual ? "bg-kasho-green" : "bg-kasho-gray-border"
+              }`}
+              onClick={() => setAnnual((v) => !v)}
               role="switch"
               type="button"
             >
@@ -129,34 +103,21 @@ export function Pricing(): React.ReactElement {
             </span>
             {annual ? (
               <span className="mr-1 rounded-full bg-kasho-green/10 px-2.5 py-0.5 font-sans text-xs font-semibold text-kasho-green">
-                -15%
+                −15%
               </span>
             ) : null}
           </div>
-        </motion.div>
+        </div>
 
+        {/* Grid de planes */}
         <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-3">
-          {plans.map((plan, index) => (
-            <motion.div
-              animate={inView ? "visible" : "hidden"}
-              className="h-full"
-              initial="hidden"
+          {PLANES.map((plan) => (
+            <div
               key={plan.name}
-              variants={{
-                hidden: { opacity: 0, y: 32 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    delay: 0.1 + index * 0.12,
-                    duration: 0.7,
-                    ease: KASHO_EASE,
-                  },
-                  y: plan.highlight ? -8 : 0,
-                },
-              }}
+              className={`h-full ${plan.highlight ? "-translate-y-2" : ""}`}
             >
               <div
-                className={`relative h-full overflow-hidden rounded-[22px] p-8 md:p-10 ${
+                className={`relative flex h-full flex-col overflow-hidden rounded-[22px] p-8 md:p-10 ${
                   plan.dark
                     ? "border border-white/[0.08] bg-gradient-to-br from-kasho-black to-kasho-navy shadow-[0_24px_64px_rgba(0,0,0,0.4)]"
                     : plan.name === "Equipo"
@@ -164,24 +125,35 @@ export function Pricing(): React.ReactElement {
                       : "border border-kasho-gray-border bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
                 } ${plan.highlight ? "lg:py-12" : ""}`}
               >
+                {/* Glow ambiental card Pro */}
                 {plan.dark ? (
                   <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-kasho-green/10 blur-3xl" />
                 ) : null}
+
+                {/* Badge */}
                 {plan.badge ? (
                   <div className="absolute right-5 top-5 rounded-full bg-kasho-yellow px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wide text-kasho-black">
                     {plan.badge}
                   </div>
                 ) : null}
+
+                {/* Nombre */}
                 <div className="mb-1.5">
                   <span
-                    className={`font-heading text-[15px] font-bold ${plan.dark ? "text-[#888]" : "text-kasho-gray-text"}`}
+                    className={`font-heading text-[15px] font-bold ${
+                      plan.dark ? "text-[#888]" : "text-kasho-gray-text"
+                    }`}
                   >
                     {plan.name}
                   </span>
                 </div>
+
+                {/* Precio */}
                 <div className="mb-6 flex items-baseline gap-1">
                   <span
-                    className={`font-heading text-[clamp(36px,4vw,48px)] font-extrabold tracking-tight ${plan.dark ? "text-white" : "text-kasho-black"}`}
+                    className={`font-heading text-[clamp(36px,4vw,48px)] font-extrabold tracking-tight ${
+                      plan.dark ? "text-white" : "text-kasho-black"
+                    }`}
                   >
                     {formatPrice(plan.price, discount)}
                   </span>
@@ -191,7 +163,9 @@ export function Pricing(): React.ReactElement {
                     COP/mes
                   </span>
                 </div>
-                <ul className="mb-6 flex flex-col gap-2.5">
+
+                {/* Features */}
+                <ul className="mb-6 flex flex-1 flex-col gap-2.5">
                   {plan.features.map((feature) => {
                     const isHighlight = feature.includes("★");
                     const text = feature.replace(" ★", "");
@@ -225,13 +199,15 @@ export function Pricing(): React.ReactElement {
                     );
                   })}
                 </ul>
+
+                {/* CTA */}
                 <a
+                  href="https://app.kashoai.com/registro"
                   className={`block rounded-xl py-3.5 text-center font-sans text-[15px] font-semibold transition-all duration-300 ${
                     plan.dark
                       ? "bg-kasho-green text-kasho-black hover:bg-kasho-green-dark hover:shadow-[0_8px_24px_rgba(0,196,140,0.35)]"
                       : "border-[1.5px] border-kasho-black/25 text-kasho-black hover:border-kasho-green hover:text-kasho-green"
                   }`}
-                  href="#precios"
                 >
                   Empezar con {plan.name}
                 </a>
@@ -243,7 +219,7 @@ export function Pricing(): React.ReactElement {
                   {plan.note}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -79,7 +79,7 @@ export function Navbar(): React.ReactElement {
             Blog
           </Link>
           <button
-            className="rounded-[10px] bg-kasho-green px-5 py-2.5 font-sans text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:bg-kasho-green-dark"
+            className="rounded-[10px] bg-kasho-green px-5 py-2.5 font-sans text-sm font-semibold text-kasho-black transition-all duration-200 hover:scale-[1.02] hover:bg-kasho-green-dark"
             onClick={openWaitlist}
             type="button"
           >
@@ -124,7 +124,7 @@ export function Navbar(): React.ReactElement {
             Blog
           </Link>
           <button
-            className="mt-4 w-full rounded-[10px] bg-kasho-green py-3 text-center font-sans font-semibold text-white no-underline"
+            className="mt-4 w-full rounded-[10px] bg-kasho-green py-3 text-center font-sans font-semibold text-kasho-black no-underline"
             onClick={() => {
               setMenuOpen(false);
               openWaitlist();

@@ -49,6 +49,13 @@ const CIUDADES: Record<string, Ciudad> = {
   },
 };
 
+const BENEFICIOS = [
+  { titulo: "Respuesta en < 2 segundos", desc: "Kasho contesta antes que tu competencia." },
+  { titulo: "Recovery automático", desc: "Reactiva leads fríos sin que el vendedor haga nada." },
+  { titulo: "Pagos Nequi y Wompi", desc: "El cliente paga sin salir de WhatsApp." },
+  { titulo: "Desde $199.000 COP/mes", desc: "Sin contratos, cancela cuando quieras." },
+];
+
 export function generateStaticParams(): { ciudad: string }[] {
   return Object.keys(CIUDADES).map((ciudad) => ({ ciudad }));
 }
@@ -94,75 +101,101 @@ export default async function CiudadPage({ params }: Props): Promise<React.React
   if (!data) notFound();
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main className="relative min-h-screen bg-kasho-black text-white overflow-hidden">
+      {/* Hero gradient */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[380px] w-[700px] -translate-x-1/2 rounded-full opacity-[0.06]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, #00c48c 0%, transparent 70%)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20">
         <Breadcrumb
           items={[
-            { label: "Colombia", href: "/" },
+            { label: "Colombia", href: "/colombia/bogota" },
             { label: data.nombre, href: `/colombia/${ciudad}` },
           ]}
         />
 
-        <div className="mt-8">
-          <p className="text-indigo-400 text-sm font-semibold tracking-widest uppercase mb-3">
+        {/* Header */}
+        <div className="mt-10 mb-14">
+          <p className="text-kasho-green text-sm font-semibold tracking-widest uppercase mb-3 font-sans">
             {data.nombreCompleto}
           </p>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
-            Ventas con IA para PYMEs<br />en {data.nombre}
+          <h1 className="font-heading text-[clamp(32px,5vw,56px)] font-extrabold leading-tight tracking-tight mb-6">
+            Ventas con IA para PYMEs
+            <br />
+            en {data.nombre}
           </h1>
-          <p className="text-gray-400 text-xl leading-relaxed max-w-2xl mb-10">
+          <p className="text-white/50 text-lg leading-relaxed max-w-2xl font-sans">
             {data.descripcion}
           </p>
+        </div>
 
-          {/* Sectores locales */}
-          <div className="mb-12">
-            <h2 className="text-xl font-bold mb-4">
-              Sectores en {data.nombre} que usan Kasho
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              {data.sectoresLocales.map((sector) => (
-                <span
-                  key={sector}
-                  className="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-gray-300"
-                >
-                  {sector}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Beneficios clave */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-            {[
-              { titulo: "Respuesta en < 2 segundos", desc: "Kasho contesta antes que tu competencia." },
-              { titulo: "Recovery automático", desc: "Reactiva leads fríos sin que el vendedor haga nada." },
-              { titulo: "Pagos Nequi y Wompi", desc: "El cliente paga sin salir de WhatsApp." },
-              { titulo: "Desde $199.000 COP/mes", desc: "Sin contratos, cancela cuando quieras." },
-            ].map((item) => (
-              <div
-                key={item.titulo}
-                className="bg-white/5 rounded-2xl border border-white/10 p-6"
+        {/* Sectores locales */}
+        <div className="mb-14">
+          <h2 className="font-heading text-xl font-bold mb-5">
+            Sectores en {data.nombre} que usan Kasho
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            {data.sectoresLocales.map((sector) => (
+              <span
+                key={sector}
+                className="bg-white/[0.05] border border-white/[0.08] rounded-full px-4 py-2 text-sm text-white/60 font-sans"
               >
-                <div className="font-bold text-white mb-1">{item.titulo}</div>
-                <div className="text-sm text-gray-400">{item.desc}</div>
-              </div>
+                {sector}
+              </span>
             ))}
           </div>
+        </div>
 
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="https://app.kashoai.com/registro"
-              className="inline-block bg-indigo-600 hover:bg-indigo-500 transition-colors text-white font-bold px-8 py-4 rounded-xl text-base text-center"
+        {/* Beneficios clave */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-14">
+          {BENEFICIOS.map((item) => (
+            <div
+              key={item.titulo}
+              className="bg-white/[0.04] rounded-[20px] border border-white/[0.08] p-6 hover:border-white/[0.15] transition-colors"
             >
-              Empieza gratis en {data.nombre}
-            </a>
-            <Link
-              href="/precios"
-              className="inline-block border border-white/20 hover:border-white/40 transition-colors text-gray-300 font-semibold px-8 py-4 rounded-xl text-base text-center"
-            >
-              Ver planes
-            </Link>
+              <div className="font-heading font-bold text-white mb-1.5">{item.titulo}</div>
+              <div className="text-sm text-white/50 font-sans">{item.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-20">
+          <a
+            href="https://app.kashoai.com/registro"
+            className="inline-block bg-kasho-green hover:bg-kasho-green-dark transition-all duration-300 text-white font-semibold font-sans px-8 py-4 rounded-xl text-[15px] text-center hover:shadow-[0_8px_24px_rgba(0,196,140,0.35)]"
+          >
+            Empieza gratis en {data.nombre}
+          </a>
+          <Link
+            href="/precios"
+            className="inline-block border border-white/[0.15] hover:border-white/30 transition-colors text-white/70 hover:text-white font-semibold font-sans px-8 py-4 rounded-xl text-[15px] text-center"
+          >
+            Ver planes y precios
+          </Link>
+        </div>
+
+        {/* Otras ciudades */}
+        <div className="border-t border-white/[0.06] pt-12">
+          <p className="text-white/30 text-sm mb-5 font-sans">Otras ciudades</p>
+          <div className="flex flex-wrap gap-3">
+            {Object.values(CIUDADES)
+              .filter((c) => c.slug !== ciudad)
+              .map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/colombia/${c.slug}`}
+                  className="text-sm text-kasho-green/70 hover:text-kasho-green transition-colors font-sans underline underline-offset-2"
+                >
+                  Kasho en {c.nombre}
+                </Link>
+              ))}
           </div>
         </div>
       </div>

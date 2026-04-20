@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 export function proxy(request: NextRequest): NextResponse {
   const url = request.nextUrl.clone();
   const host = request.headers.get("host") ?? "";
-  const proto = request.headers.get("x-forwarded-proto") ?? "https";
 
   // 1. Redirect www → non-www (301)
   if (host.startsWith("www.")) {
@@ -17,15 +16,13 @@ export function proxy(request: NextRequest): NextResponse {
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // 3. Forzar HTTPS en producción (301)
-  if (proto === "http" && process.env.NODE_ENV === "production") {
-    url.protocol = "https:";
-    return NextResponse.redirect(url, { status: 301 });
-  }
+  // No forzar HTTP→HTTPS aquí: en Vercel el edge ya redirige, y con Cloudflare delante
+  // (SSL "Flexible") x-forwarded-proto puede ser http hacia el origen y provoca
+  // ERR_TOO_MANY_REDIRECTS. Usa Cloudflare SSL "Full" o "Full (strict)".
 
   const response = NextResponse.next();
 
-  // 4. X-Robots-Tag: noindex para rutas privadas
+  // 3. X-Robots-Tag: noindex para rutas privadas
   if (
     url.pathname.startsWith("/dashboard") ||
     url.pathname.startsWith("/onboarding") ||

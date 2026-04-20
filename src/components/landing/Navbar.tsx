@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
+import { KashoLogo } from "@/components/brand/KashoLogo";
 import { useWaitlist } from "@/contexts/waitlist-context";
 
 export function Navbar(): React.ReactElement {
@@ -50,11 +51,12 @@ export function Navbar(): React.ReactElement {
       }}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link
-          className="font-heading text-[22px] font-extrabold tracking-tight text-kasho-green"
-          href="/"
-        >
-          Kasho
+        <Link className="flex items-center" href="/">
+          <KashoLogo
+            background={scrolled ? "light" : "dark"}
+            height={30}
+            priority
+          />
         </Link>
 
         <div className="hidden items-center gap-6 md:flex lg:gap-8">

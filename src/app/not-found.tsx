@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { KashoLogo } from "@/components/brand/KashoLogo";
+
 export const metadata: Metadata = {
   title: "Página no encontrada",
   description: "La página que buscas no existe. Vuelve al inicio de Kasho.",
@@ -11,7 +13,10 @@ export default function NotFound(): React.ReactElement {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] text-white px-4">
       <div className="text-center max-w-lg">
-        <p className="text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-4">
+        <Link className="mb-10 inline-flex justify-center" href="/">
+          <KashoLogo background="dark" height={36} priority />
+        </Link>
+        <p className="text-kasho-green font-semibold text-sm tracking-widest uppercase mb-4">
           Error 404
         </p>
         <h1 className="text-5xl font-extrabold tracking-tight mb-4">
@@ -23,7 +28,7 @@ export default function NotFound(): React.ReactElement {
         </p>
         <Link
           href="/"
-          className="inline-block bg-indigo-600 hover:bg-indigo-500 transition-colors text-white font-bold px-8 py-4 rounded-xl text-base"
+          className="inline-block bg-kasho-green hover:bg-kasho-green-dark transition-colors text-white font-bold px-8 py-4 rounded-xl text-base"
         >
           Volver al inicio
         </Link>

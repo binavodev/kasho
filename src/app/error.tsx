@@ -1,6 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect } from "react";
+
+import { KashoLogo } from "@/components/brand/KashoLogo";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -16,6 +19,9 @@ export default function GlobalError({ error, reset }: ErrorProps): React.ReactEl
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] text-white px-4">
       <div className="text-center max-w-lg">
+        <Link className="mb-10 inline-flex justify-center" href="/">
+          <KashoLogo background="dark" height={36} priority />
+        </Link>
         <p className="text-red-400 font-semibold text-sm tracking-widest uppercase mb-4">
           Error inesperado
         </p>
@@ -29,7 +35,7 @@ export default function GlobalError({ error, reset }: ErrorProps): React.ReactEl
         <div className="flex gap-4 justify-center">
           <button
             onClick={reset}
-            className="bg-indigo-600 hover:bg-indigo-500 transition-colors text-white font-bold px-8 py-4 rounded-xl text-base"
+            className="bg-kasho-green hover:bg-kasho-green-dark transition-colors text-white font-bold px-8 py-4 rounded-xl text-base"
           >
             Intentar de nuevo
           </button>

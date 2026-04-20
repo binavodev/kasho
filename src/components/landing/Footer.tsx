@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { KashoLogo } from "@/components/brand/KashoLogo";
 import { useWaitlist } from "@/contexts/waitlist-context";
 
 const productLinks: { href: string; label: string }[] = [
@@ -50,9 +51,9 @@ export function Footer(): React.ReactElement {
       <div className="mx-auto max-w-7xl">
         <div className="mb-14 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-8">
           <div className="sm:col-span-2 lg:col-span-2">
-            <div className="mb-3 font-heading text-2xl font-extrabold text-kasho-green">
-              Kasho
-            </div>
+            <Link className="mb-4 inline-flex" href="/">
+              <KashoLogo background="dark" height={34} />
+            </Link>
             <p className="mb-5 max-w-sm font-sans text-sm leading-relaxed text-neutral-400">
               Tu asistente de ventas en WhatsApp. Responde, hace seguimiento y
               te muestra los resultados.

@@ -1,3 +1,4 @@
+import { Check } from "iconoir-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -129,11 +130,13 @@ export default function PreciosPage(): React.ReactElement {
               <ul className="flex-1 space-y-3 mb-8">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex gap-2 text-sm">
-                    <span
-                      className={`mt-0.5 flex-shrink-0 ${plan.destacado ? "text-indigo-200" : "text-indigo-400"}`}
-                    >
-                      ✓
-                    </span>
+                    <Check
+                      aria-hidden
+                      className={`mt-0.5 shrink-0 ${plan.destacado ? "text-indigo-200" : "text-indigo-400"}`}
+                      height={16}
+                      strokeWidth={2}
+                      width={16}
+                    />
                     <span className={plan.destacado ? "text-indigo-100" : "text-gray-300"}>
                       {feature}
                     </span>

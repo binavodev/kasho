@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Check } from "iconoir-react";
 import { useRef } from "react";
 
 import { useKashoInView } from "@/hooks/use-kasho-in-view";
@@ -79,7 +80,13 @@ export function FinalCTA(): React.ReactElement {
                 className="flex items-center gap-1.5 font-sans text-[13px] font-medium text-black/50"
                 key={label}
               >
-                <span className="text-[15px] font-bold text-black/70">✓</span>
+                <Check
+                  aria-hidden
+                  className="shrink-0 text-black/70"
+                  height={15}
+                  strokeWidth={2.5}
+                  width={15}
+                />
                 {label}
               </div>
             ))}

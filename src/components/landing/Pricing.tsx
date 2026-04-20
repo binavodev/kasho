@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Check } from "iconoir-react";
 import { useRef, useState } from "react";
 
 import { useKashoInView } from "@/hooks/use-kasho-in-view";
@@ -205,9 +206,13 @@ export function Pricing(): React.ReactElement {
                         }`}
                         key={feature}
                       >
-                        <span className="mt-0.5 shrink-0 font-semibold text-kasho-green">
-                          ✓
-                        </span>
+                        <Check
+                          aria-hidden
+                          className="mt-0.5 shrink-0 text-kasho-green"
+                          height={16}
+                          strokeWidth={2}
+                          width={16}
+                        />
                         <span>
                           {text}
                           {isHighlight ? (

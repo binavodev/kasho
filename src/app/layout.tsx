@@ -11,6 +11,9 @@ const geistMono = Geist_Mono({
 
 const SITE_URL = "https://kashoai.com";
 
+/** Crawler-friendly OG image URL (digits-only monto avoids odd query parsing in some scrapers). */
+const DEFAULT_OG_IMAGE_PATH = "/og?plan=Pro&monto=3800000";
+
 // Esquema JSON-LD completo para Kasho
 const jsonLd = {
   "@context": "https://schema.org",
@@ -115,11 +118,13 @@ const jsonLd = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: {
-    apple: [{ sizes: "180x180", type: "image/svg+xml", url: "/icons/kasho-icon.svg" }],
+    apple: [{ sizes: "180x180", type: "image/png", url: "/icons/apple-touch-icon-180x180.png" }],
     icon: [
+      { sizes: "32x32", type: "image/png", url: "/icons/favicon-32x32.png" },
+      { sizes: "16x16", type: "image/png", url: "/icons/favicon-16x16.png" },
       { sizes: "any", type: "image/svg+xml", url: "/icons/kasho-favicon.svg" },
     ],
-    shortcut: "/icons/kasho-favicon.svg",
+    shortcut: "/icons/favicon-32x32.png",
   },
   title: {
     default: "Kasho — Motor de ventas con IA para WhatsApp | Colombia",
@@ -153,7 +158,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og?monto=3.800.000&plan=Pro`,
+        url: `${SITE_URL}${DEFAULT_OG_IMAGE_PATH}`,
         width: 1200,
         height: 630,
         alt: "Kasho — Esta semana recuperaste $3.800.000 en leads que ibas a perder.",
@@ -165,7 +170,7 @@ export const metadata: Metadata = {
     title: "Kasho — Motor de ventas con IA para WhatsApp | Colombia",
     description:
       "Kasho responde tus leads en WhatsApp en menos de 2 segundos y te muestra cuánta plata recuperaste. Desde $199.000 COP/mes.",
-    images: [`${SITE_URL}/og?monto=3.800.000&plan=Pro`],
+    images: [`${SITE_URL}${DEFAULT_OG_IMAGE_PATH}`],
   },
   robots: {
     index: true,

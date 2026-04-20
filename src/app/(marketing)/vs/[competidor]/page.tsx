@@ -130,7 +130,7 @@ export default async function CompetidorPage({ params }: Props): Promise<React.R
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-16 sm:pb-20">
         <Breadcrumb
           items={[
             { label: "Comparaciones", href: "/vs/kommo" },
@@ -139,7 +139,7 @@ export default async function CompetidorPage({ params }: Props): Promise<React.R
         />
 
         {/* Header */}
-        <div className="mt-10 mb-14">
+        <div className="mt-4 sm:mt-6 mb-8 sm:mb-12">
           <p className="text-kasho-green text-sm font-semibold tracking-widest uppercase mb-3 font-sans">
             Comparación directa
           </p>
@@ -153,12 +153,12 @@ export default async function CompetidorPage({ params }: Props): Promise<React.R
 
         {/* Tabla de comparación */}
         <div className="overflow-x-auto rounded-[22px] border border-white/[0.08] mb-14 bg-white/[0.02]">
-          <table className="w-full text-sm font-sans">
+          <table className="w-full min-w-[520px] text-xs font-sans sm:min-w-0 sm:text-sm">
             <thead>
               <tr className="border-b border-white/[0.08]">
-                <th className="text-left p-5 text-white/40 font-medium">Característica</th>
-                <th className="text-left p-5 text-kasho-green font-semibold">Kasho</th>
-                <th className="text-left p-5 text-white/40 font-medium">{data.nombre}</th>
+                <th className="text-left p-3 sm:p-5 text-white/40 font-medium">Característica</th>
+                <th className="text-left p-3 sm:p-5 text-kasho-green font-semibold">Kasho</th>
+                <th className="text-left p-3 sm:p-5 text-white/40 font-medium">{data.nombre}</th>
               </tr>
             </thead>
             <tbody>
@@ -169,9 +169,9 @@ export default async function CompetidorPage({ params }: Props): Promise<React.R
                     i % 2 === 0 ? "" : "bg-white/[0.02]"
                   }`}
                 >
-                  <td className="p-5 text-white/60">{fila.feature}</td>
-                  <td className="p-5 text-white font-medium">{fila.kasho}</td>
-                  <td className="p-5 text-white/35">{fila.rival}</td>
+                  <td className="p-3 sm:p-5 text-white/60">{fila.feature}</td>
+                  <td className="p-3 sm:p-5 text-white font-medium">{fila.kasho}</td>
+                  <td className="p-3 sm:p-5 text-white/35">{fila.rival}</td>
                 </tr>
               ))}
             </tbody>
@@ -182,7 +182,7 @@ export default async function CompetidorPage({ params }: Props): Promise<React.R
         <div className="flex flex-col sm:flex-row gap-4 mb-20">
           <a
             href="https://app.kashoai.com/registro"
-            className="inline-block bg-kasho-green hover:bg-kasho-green-dark transition-all duration-300 text-white font-semibold font-sans px-8 py-4 rounded-xl text-[15px] text-center hover:shadow-[0_8px_24px_rgba(0,196,140,0.35)]"
+            className="inline-block bg-kasho-green font-semibold font-sans text-kasho-black transition-all duration-300 hover:bg-kasho-green-dark px-8 py-4 rounded-xl text-[15px] text-center hover:shadow-[0_8px_24px_rgba(0,196,140,0.35)]"
           >
             Prueba Kasho gratis 14 días
           </a>

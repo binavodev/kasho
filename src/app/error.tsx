@@ -35,7 +35,7 @@ export default function GlobalError({ error, reset }: ErrorProps): React.ReactEl
         <div className="flex gap-4 justify-center">
           <button
             onClick={reset}
-            className="bg-kasho-green hover:bg-kasho-green-dark transition-colors text-white font-bold px-8 py-4 rounded-xl text-base"
+            className="bg-kasho-green font-bold text-kasho-black transition-colors hover:bg-kasho-green-dark px-8 py-4 rounded-xl text-base"
           >
             Intentar de nuevo
           </button>

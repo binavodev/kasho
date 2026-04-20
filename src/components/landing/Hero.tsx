@@ -223,7 +223,7 @@ export function Hero(): React.ReactElement {
             whileInView="visible"
           >
             <button
-              className="inline-flex items-center gap-2 rounded-xl bg-kasho-green px-7 py-3.5 font-sans text-[15px] font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-kasho-green-dark hover:shadow-[0_8px_30px_rgba(0,196,140,0.35)] active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-xl bg-kasho-green px-7 py-3.5 font-sans text-[15px] font-semibold text-kasho-black transition-all duration-300 hover:scale-[1.02] hover:bg-kasho-green-dark hover:shadow-[0_8px_30px_rgba(0,196,140,0.35)] active:scale-[0.98]"
               onClick={openWaitlist}
               type="button"
             >

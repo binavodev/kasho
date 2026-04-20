@@ -11,7 +11,7 @@ export default function MarketingLayout({
   return (
     <WaitlistProvider>
       <Navbar />
-      <div className="pt-16">{children}</div>
+      <div className="bg-kasho-black pt-16">{children}</div>
       <Footer />
       <WaitlistDialog />
     </WaitlistProvider>

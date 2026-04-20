@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Internal product / brand docs (keep local only)
+KASHO_Brand_Guidelines_v1.docx.md
+KASHO_Documento_Producto_Colombia_v2.md
+KASHO_Modelo_Financiero_v1.docx.md

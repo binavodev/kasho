@@ -39,12 +39,12 @@ export async function GET(request: NextRequest): Promise<ImageResponse> {
           </div>
           <div
             style={{
-              background: "rgba(99,102,241,0.2)",
-              border: "1px solid rgba(99,102,241,0.5)",
+              background: "rgba(0,196,140,0.18)",
+              border: "1px solid rgba(0,196,140,0.45)",
               borderRadius: "100px",
               padding: "8px 20px",
               fontSize: 16,
-              color: "#a5b4fc",
+              color: "#5eead4",
               fontWeight: 600,
             }}
           >
@@ -97,7 +97,7 @@ export async function GET(request: NextRequest): Promise<ImageResponse> {
           <div style={{ fontSize: 18, color: "#6b7280" }}>kashoai.com</div>
           <div
             style={{
-              background: "linear-gradient(90deg, #6366f1, #8b5cf6)",
+              background: "linear-gradient(90deg, #00c48c, #007a5c)",
               borderRadius: "100px",
               padding: "12px 28px",
               fontSize: 18,

@@ -114,6 +114,13 @@ const jsonLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: {
+    apple: [{ sizes: "180x180", type: "image/svg+xml", url: "/icons/kasho-icon.svg" }],
+    icon: [
+      { sizes: "any", type: "image/svg+xml", url: "/icons/kasho-favicon.svg" },
+    ],
+    shortcut: "/icons/kasho-favicon.svg",
+  },
   title: {
     default: "Kasho — Motor de ventas con IA para WhatsApp | Colombia",
     template: "%s | Kasho",

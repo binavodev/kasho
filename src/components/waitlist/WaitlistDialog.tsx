@@ -4,6 +4,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Check, Xmark } from "iconoir-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
+import { KashoLogo } from "@/components/brand/KashoLogo";
 import { useWaitlist } from "@/contexts/waitlist-context";
 import { getFirestoreDb, isFirebaseConfigured } from "@/lib/firebase";
 import {
@@ -120,9 +121,7 @@ export function WaitlistDialog(): React.ReactElement {
     >
       <div className="flex items-start justify-between gap-4 border-b border-white/[0.08] px-6 py-5">
         <div>
-          <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-kasho-green">
-            Kasho
-          </p>
+          <KashoLogo background="dark" className="mb-3" height={26} />
           <h2
             className="mt-1 font-heading text-xl font-bold tracking-tight text-white"
             id={titleId}

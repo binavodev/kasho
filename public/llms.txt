@@ -1,0 +1,73 @@
+# Kasho
+
+> Motor de ventas conversacional con IA para PYMEs en Colombia.
+> Kasho responde leads de WhatsApp en menos de 2 segundos, recupera leads fríos automáticamente y muestra cuánta plata recuperó el negocio cada semana. 100% en pesos colombianos.
+
+## Qué es Kasho
+
+Kasho es una plataforma de ventas conversacional construida específicamente para pequeñas y medianas empresas colombianas que venden por WhatsApp. A diferencia de un chatbot genérico, Kasho actúa como un vendedor de IA que conoce el negocio, responde con contexto y hace seguimiento hasta cerrar.
+
+### Problema que resuelve
+
+Las PYMEs colombianas pierden entre el 60% y el 80% de sus leads de WhatsApp porque:
+- Responden tarde (el cliente ya compró en otro lado)
+- No hacen seguimiento a los leads que no contestaron
+- No tienen métricas de cuánta plata perdieron por esos leads
+
+Kasho resuelve los tres problemas de forma automática.
+
+## Precios (COP, IVA incluido)
+
+- **Starter**: $199.000 COP/mes — 1 número WhatsApp, hasta 500 conversaciones, IA 24/7, transcripción de audios, panel básico
+- **Pro** (el más elegido): $349.000 COP/mes — Conversaciones ilimitadas, recovery automático de leads fríos, panel completo, pagos Wompi/Nequi en el chat, reporte semanal por WhatsApp
+- **Equipo**: $599.000 COP/mes — 3 números, multi-agente, todo del Pro + reportes avanzados y soporte prioritario
+
+Sin contratos anuales. Cancela cuando quieras. Prueba gratuita de 14 días sin tarjeta de crédito.
+
+## Funcionalidades clave
+
+- **Respuesta instantánea**: Responde leads en WhatsApp en < 2 segundos, las 24 horas, los 7 días de la semana
+- **Recovery automático**: Detecta leads que no respondieron y les envía un mensaje de seguimiento automatizado en el momento óptimo
+- **Pagos integrados**: Genera links de pago Wompi (Bancolombia) en la conversación — acepta Nequi, Daviplata, PSE, tarjetas y corresponsales
+- **Reporte semanal**: El dueño recibe cada lunes un resumen en WhatsApp de cuánta plata recuperó Kasho esa semana
+- **Panel de resultados**: Dashboard con conversaciones, tasa de cierre, revenue recuperado y leads activos
+- **Transcripción de voz**: Convierte mensajes de voz de WhatsApp en texto para que el vendedor vea el resumen
+
+## Cumplimiento Meta 2026
+
+Desde el 15 de enero de 2026, Meta prohibió chatbots de IA de propósito general en WhatsApp Business API. Kasho opera como bot anciliar de ventas para negocios específicos, lo cual está explícitamente permitido. Cada cuenta Kasho está vinculada a un negocio concreto con su catálogo y contexto propio.
+
+## Sectores principales en Colombia
+
+- Salud y Estética (clínicas, centros médicos, spas)
+- Educación y Cursos (academias, institutos, creadores de contenido)
+- Inmobiliaria (agentes y agencias)
+- Agencias de Viaje
+- Talleres y Servicios Premium
+
+## Ciudades con mayor adopción
+
+Bogotá D.C., Medellín (Antioquia), Cali (Valle del Cauca), Barranquilla (Atlántico)
+
+## Integraciones
+
+- WhatsApp Business API (Meta)
+- Wompi (Bancolombia) — pagos en COP: Nequi, Daviplata, PSE, tarjetas, corresponsales
+- Próximamente: Siigo, Alegra, Pipedrive
+
+## Información de contacto
+
+- Sitio web: https://kashoai.com
+- Email: hola@kashoai.com
+- Instagram: @kashoai
+- LinkedIn: linkedin.com/company/kashoai
+- País: Colombia
+
+## URLs importantes
+
+- Inicio: https://kashoai.com
+- Precios: https://kashoai.com/precios
+- Blog: https://kashoai.com/blog
+- Registro: https://app.kashoai.com/registro
+- Privacidad: https://kashoai.com/privacidad
+- Términos: https://kashoai.com/terminos

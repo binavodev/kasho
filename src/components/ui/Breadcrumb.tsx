@@ -38,7 +38,7 @@ export function Breadcrumb({ items }: BreadcrumbProps): React.ReactElement {
           {allItems.map((item, index) => {
             const isLast = index === allItems.length - 1;
             return (
-              <li key={item.href} className="flex items-center gap-1">
+              <li key={`bc-${index}-${item.label}`} className="flex items-center gap-1">
                 {isLast ? (
                   <span className="font-medium text-white/80" aria-current="page">
                     {item.label}

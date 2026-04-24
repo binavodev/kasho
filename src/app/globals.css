@@ -232,9 +232,51 @@ input[type="range"].kasho-range::-moz-range-thumb {
   border-radius: 3px;
 }
 
-/* Legal pages */
+/* Legal pages — base (light) */
 .kasho-legal-container h1 {
   @apply mb-3 font-heading text-[clamp(32px,5vw,52px)] font-extrabold leading-tight tracking-tight text-kasho-black;
+}
+
+/* Legal pages — dark (alineado con marketing) */
+.kasho-legal-page {
+  @apply bg-kasho-black;
+}
+
+.kasho-legal-page .kasho-legal-container h1 {
+  @apply text-white;
+}
+
+.kasho-legal-page .kasho-meta {
+  @apply text-white/45;
+}
+
+.kasho-legal-page .kasho-legal-container h2 {
+  @apply text-white;
+}
+
+.kasho-legal-page .kasho-legal-container p,
+.kasho-legal-page .kasho-legal-container ul li {
+  @apply text-white/70;
+}
+
+.kasho-legal-page .kasho-divider {
+  @apply border-white/10;
+}
+
+.kasho-legal-page .kasho-highlight {
+  @apply border-kasho-green bg-white/[0.04];
+}
+
+.kasho-legal-page .kasho-highlight p {
+  @apply text-white/75;
+}
+
+.kasho-legal-page .kasho-table th {
+  @apply bg-white/[0.06] text-white;
+}
+
+.kasho-legal-page .kasho-table td {
+  @apply border-white/10 text-white/70;
 }
 
 .kasho-meta {

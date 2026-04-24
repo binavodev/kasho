@@ -1,8 +1,7 @@
-const LOGO_VIEWBOX_WIDTH = 210;
-const LOGO_VIEWBOX_HEIGHT = 56;
+const ISOLOGO_SRC = "/icons/kasho-icon.svg";
 
 export type KashoLogoProps = {
-  /** Use `light` when the logo sits on a white or light bar; `dark` on `#0d0d0d` or similar. */
+  /** `dark` = texto claro (fondo oscuro). `light` = texto oscuro (fondo claro). */
   background: "dark" | "light";
   className?: string;
   height?: number;
@@ -15,27 +14,33 @@ export function KashoLogo({
   height = 28,
   priority = false,
 }: KashoLogoProps): React.ReactElement {
-  const src =
-    background === "light"
-      ? "/icons/kasho-logo-light.svg"
-      : "/icons/kasho-logo-dark.svg";
-  const width = Math.round(
-    (LOGO_VIEWBOX_WIDTH / LOGO_VIEWBOX_HEIGHT) * height,
-  );
+  const textClass =
+    background === "dark" ? "text-white" : "text-kasho-black";
+  const fontSizePx = Math.max(15, Math.round(height * 0.68));
+  const gapClass = height >= 32 ? "gap-2.5" : "gap-2";
 
   return (
-    <span className={`inline-flex shrink-0 items-center ${className ?? ""}`}>
+    <span
+      className={`inline-flex items-center ${gapClass} ${className ?? ""}`}
+    >
       <img
-        alt="Kasho"
-        className="max-h-[40px] w-auto max-w-[min(100%,220px)]"
+        alt=""
+        aria-hidden
+        className="shrink-0 select-none"
         decoding="async"
         fetchPriority={priority ? "high" : "auto"}
         height={height}
         loading={priority ? "eager" : "lazy"}
-        src={src}
-        style={{ height, width: "auto" }}
-        width={width}
+        src={ISOLOGO_SRC}
+        style={{ height, width: height }}
+        width={height}
       />
+      <span
+        className={`font-heading font-extrabold leading-none tracking-[-0.04em] antialiased ${textClass}`}
+        style={{ fontSize: fontSizePx }}
+      >
+        Kasho
+      </span>
     </span>
   );
 }

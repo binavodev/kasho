@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
+import { LegalMain } from "@/components/legal/LegalMain";
 import { LegalNav } from "@/components/legal/LegalNav";
 import { LegalPageFooter } from "@/components/legal/LegalPageFooter";
+import { LegalSubnav } from "@/components/legal/LegalSubnav";
 import { TerminosBody } from "@/components/legal/TerminosBody";
 
 export const metadata: Metadata = {
@@ -22,12 +24,21 @@ export const metadata: Metadata = {
 
 export default function TerminosPage(): React.ReactElement {
   return (
-    <div className="min-h-screen bg-white text-kasho-black">
+    <div className="kasho-legal-page relative min-h-screen overflow-x-hidden text-white">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[320px] w-[min(100%,600px)] -translate-x-1/2 opacity-[0.08]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, #00c48c 0%, transparent 70%)",
+        }}
+      />
       <LegalNav />
-      <main className="kasho-legal-container mx-auto max-w-[740px] px-4 pb-24 pt-12 sm:px-6 sm:pb-28 sm:pt-16">
+      <LegalSubnav current="terminos" />
+      <LegalMain className="kasho-legal-container relative z-10 mx-auto max-w-[740px] px-4 pb-24 pt-8 sm:px-6 sm:pb-28 sm:pt-12">
         <TerminosBody />
-      </main>
-      <LegalPageFooter linkHref="/privacidad" linkLabel="Política de privacidad" />
+      </LegalMain>
+      <LegalPageFooter />
     </div>
   );
 }

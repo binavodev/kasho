@@ -135,10 +135,7 @@ export default async function SectorPage({ params }: Props): Promise<React.React
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-16 sm:pb-20">
         <Breadcrumb
-          items={[
-            { label: "Ventas WhatsApp", href: "/ventas-whatsapp/salud-estetica" },
-            { label: data.nombre, href: `/ventas-whatsapp/${sector}` },
-          ]}
+          items={[{ label: `Ventas WhatsApp · ${data.nombre}`, href: `/ventas-whatsapp/${sector}` }]}
         />
 
         {/* Header */}
